@@ -6,15 +6,22 @@ const BasketProducts = () => {
   const { products, amount, total } = useSelector((store) => store.basket);
   return (
     <div>
-      {products.map((item, i) => (
-        <Product
-          key={new Date().getTime + Math.random()}
-          name={item.name}
-          price={item.price}
-          image={item.image}
-          amount={item.amount}
-        />
-      ))}
+      <div>
+        {products.map((item, i) => (
+          <Product
+            key={new Date().getTime + Math.random()}
+            name={item.name}
+            price={item.price}
+            image={item.image}
+            amount={item.amount}
+          />
+        ))}
+      </div>
+      <div>
+        <p>Total</p>
+        <p>{amount}</p>
+        <p>{total}</p>
+      </div>
     </div>
   );
 };
