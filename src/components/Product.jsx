@@ -1,6 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { increaseAmount, decreaseAmount } from "../features/basketSlice";
+import {
+  increaseAmount,
+  decreaseAmount,
+  removeItem,
+} from "../features/basketSlice";
 
 const Product = ({ name, price, image, amount }) => {
   const dispatch = useDispatch();
@@ -10,7 +14,14 @@ const Product = ({ name, price, image, amount }) => {
       <div className="w-1/2 px-10">
         <p className="text-xl font-medium">{name}</p>
         <p className="text-lg">{price.toFixed(2)}</p>
-        <button className="text-red-500 tracking-wide pt-1 pb-3">Remove</button>
+        <button
+          className="text-red-500 tracking-wide pt-1 pb-3"
+          onClick={() => {
+            dispatch(removeItem({ name }));
+          }}
+        >
+          Remove
+        </button>
       </div>
       <div className="flex flex-col items-center">
         <p className="text-lg font-medium">Amount</p>
@@ -18,7 +29,12 @@ const Product = ({ name, price, image, amount }) => {
           <button
             className="text-xl"
             onClick={() => {
-              dispatch(decreaseAmount({ name }));
+              if (amount === 1) {
+                dispatch(removeItem({ name }));
+                return;
+              } else {
+                dispatch(decreaseAmount({ name }));
+              }
             }}
           >
             {" "}
