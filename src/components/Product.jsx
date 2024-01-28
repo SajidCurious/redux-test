@@ -1,6 +1,9 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { increaseAmount, decreaseAmount } from "../features/basketSlice";
 
 const Product = ({ name, price, image, amount }) => {
+  const dispatch = useDispatch();
   return (
     <div className="flex flex-row items-center gap-8 px-10 mt-20">
       <img src={image} alt={name} className="w-40 h-40" />
@@ -12,9 +15,24 @@ const Product = ({ name, price, image, amount }) => {
       <div className="flex flex-col items-center">
         <p className="text-lg font-medium">Amount</p>
         <div className="flex flex-row items-center gap-4 text-gray-600 font-medium">
-          <button className="text-xl"> -</button>
+          <button
+            className="text-xl"
+            onClick={() => {
+              dispatch(decreaseAmount({ name }));
+            }}
+          >
+            {" "}
+            -
+          </button>
           <p>{amount}</p>
-          <button className="text-xl"> + </button>
+          <button
+            className="text-xl"
+            onClick={() => {
+              dispatch(increaseAmount({ name }));
+            }}
+          >
+            +
+          </button>
         </div>
       </div>
     </div>
