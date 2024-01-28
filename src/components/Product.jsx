@@ -7,10 +7,15 @@ const Product = ({ name, price, image, amount }) => {
       <div className="w-1/2 px-10">
         <p className="text-xl font-medium">{name}</p>
         <p className="text-lg">{price.toFixed(2)}</p>
+        <button className="text-red-500 tracking-wide pt-1 pb-3">Remove</button>
       </div>
       <div className="flex flex-col items-center">
         <p className="text-lg font-medium">Amount</p>
-        <p>{amount}</p>
+        <div className="flex flex-row items-center gap-4 text-gray-600 font-medium">
+          <button className="text-xl"> -</button>
+          <p>{amount}</p>
+          <button className="text-xl"> + </button>
+        </div>
       </div>
     </div>
   );
