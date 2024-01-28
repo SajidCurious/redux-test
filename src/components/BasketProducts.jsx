@@ -17,7 +17,7 @@ const BasketProducts = () => {
           />
         ))}
       </div>
-      <div>
+      <div className="flex flex-row items-center justify-evenly py-8">
         <p>Total</p>
         <p>{amount}</p>
         <p>{total}</p>
